@@ -1,6 +1,7 @@
-# ignore TDMS files because of large size
+# ignore TDMS files and csv because of large size
 *.tdms 
 *.tdms_index
+*.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

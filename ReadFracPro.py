@@ -8,9 +8,9 @@ import csv
 # import numpy 
 #
 
-
-files = os.listdir(r"data/")  #Use raw strings with “r” as a prefix to indicate that special characters should not be evaluated
-# print(files)
+path = r"data/"  #Use raw strings with “r” as a prefix to indicate that special characters should not be evaluated
+files = os.listdir(path)  
+print(files)
 
 with open('Surface_Pressures.csv', mode='w', newline='') as csv_file:
     csv_writer = csv.writer(csv_file, delimiter=',')
@@ -18,7 +18,7 @@ with open('Surface_Pressures.csv', mode='w', newline='') as csv_file:
     for item in files:
         if item.endswith(".tdms"):
             print(item)
-            tdms_file = TdmsFile.read(item)
+            tdms_file = TdmsFile.read(os.path.join(path, item))
             group = tdms_file["Local Formulas"] #groups are the same as tabs in Excel, channels are the same as columns of data
             channel_2H = group['2H Surface']
             channel_4H = group['4H Surface']
