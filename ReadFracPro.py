@@ -9,7 +9,7 @@ import csv
 #
 
 
-files = os.listdir()
+files = os.listdir(r"data/")  #Use raw strings with “r” as a prefix to indicate that special characters should not be evaluated
 # print(files)
 
 with open('Surface_Pressures.csv', mode='w', newline='') as csv_file:
@@ -19,7 +19,7 @@ with open('Surface_Pressures.csv', mode='w', newline='') as csv_file:
         if item.endswith(".tdms"):
             print(item)
             tdms_file = TdmsFile.read(item)
-            group = tdms_file["Local Formulas"]
+            group = tdms_file["Local Formulas"] #groups are the same as tabs in Excel, channels are the same as columns of data
             channel_2H = group['2H Surface']
             channel_4H = group['4H Surface']
             channel_6H = group['6H Surface']
@@ -48,13 +48,9 @@ with open('Surface_Pressures.csv', mode='w', newline='') as csv_file:
             #     print(channel)
             # print(f"{'Time' : <20}{'2H' : ^6}{'4H' : ^6}{'6H' : ^6}{'8H' : ^7}{'10H' : ^7}{'12H' : ^7}{'14H' : ^7}")
             for time, item2, item4, item6, item8, item10, item12, item14 in zip(channel_data_time, channel_data_2H, channel_4H, channel_6H, channel_8H, channel_10H, channel_12H, channel_14H):
-                if str(time)[17:19] == "00":
+                
+                if str(time)[17:19] == "00":  #only grab the minute    Need to add code later to be able to specify an actual interval
 
-    # with open('employee_file.csv', mode='w') as employee_file:
-    #     employee_writer = csv.writer(employee_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-
-    #     employee_writer.writerow(['John Smith', 'Accounting', 'November'])
-    #     employee_writer.writerow(['Erica Meyers', 'IT', 'March'])
                     # temp = [str(time), item2, item4, item6, item8, item10, item12, item14]
                     # print(f"{str(time)[0:16]: <20}{item2:^6.1f}{item4:^6.1f}{item6:^6.1f}{item8:^7.1f}{item10:^7.1f}{item12:^7.1f}{item14:^7.1f}")
                     newtime = str(time)[0:16]
@@ -77,7 +73,7 @@ with open('Surface_Pressures.csv', mode='w', newline='') as csv_file:
             #     d = ts.strftime('%Y.%m.%d')
             #     print(d)
 
-
+    #Pandas dataframe stuff to play with later
             # import pandas as pd 
             # ts = pd.to_datetime(str(date)) 
             # d = ts.strftime('%Y.%m.%d')
