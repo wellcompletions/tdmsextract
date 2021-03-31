@@ -1,10 +1,13 @@
 from nptdms import TdmsFile
+#  import pandas as pd 
 import os
-import datetime 
-# import dateutil.parser
-import numpy 
-import pandas as pd 
 import csv
+# comment out includes that aren't needed right now
+# import datetime 
+# import dateutil.parser
+# import numpy 
+#
+
 
 files = os.listdir()
 # print(files)
